@@ -45,22 +45,22 @@ export default {
     async save() {
       let res
       if (this.id) {
-        res = await this.axios.put(`categories/${this.id}`, this.model)
+        res = await this.axios.put(`rest/categories/${this.id}`, this.model)
       } else {
-        res = await this.axios.post('categories', this.model)
+        res = await this.axios.post('rest/categories', this.model)
       }
 
       console.log(res)
       // res判断
-      this.$router.push('/categories/list')
+      this.$router.push('rest/categories/list')
       this.$message({ type: 'success', message: '保存成功' })
     },
     async fetch() {
-      const res = await this.axios.get(`categories/${this.id}`)
+      const res = await this.axios.get(`rest/categories/${this.id}`)
       this.model = res.data
     },
     async fetchParents() {
-      const res = await this.axios.get('/categories')
+      const res = await this.axios.get('rest/categories')
       this.parents = res.data
     }
   }

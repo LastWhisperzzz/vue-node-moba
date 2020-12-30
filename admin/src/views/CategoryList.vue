@@ -35,7 +35,7 @@ export default {
   },
   methods: {
     async getCateList() {
-      const res = await this.axios.get('categories')
+      const res = await this.axios.get('rest/categories')
       console.log(res.data)
       this.cateList = res.data
     },
@@ -45,7 +45,7 @@ export default {
         cancelButtonText: '取消',
         type: 'warning'
       }).then(async () => {
-        await this.$http.delete(`/categories/${row._id}`)
+        await this.$http.delete(`rest/categories/${row._id}`)
         this.$message({
           type: 'success',
           message: '删除成功!'
