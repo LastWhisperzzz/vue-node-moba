@@ -39,7 +39,7 @@
           <el-menu-item-group>
             <template slot="title">分类</template>
             <el-menu-item index="/categories/create">新建分类</el-menu-item>
-            <el-menu-item index="3-2">分类列表</el-menu-item>
+            <el-menu-item index="/categories/list">分类列表</el-menu-item>
           </el-menu-item-group>
           <el-menu-item-group>
             <template slot="title">管理员</template>

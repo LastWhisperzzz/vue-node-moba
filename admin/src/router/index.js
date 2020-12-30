@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
 
 Vue.use(VueRouter)
 
@@ -8,11 +7,20 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: Home,
+    component: () => import('@/views/Home.vue'),
     children: [
       {
         path: '/categories/create',
         component: () => import('@/views/CategoryEdit.vue')
+      },
+      {
+        path: '/categories/edit/:id',
+        component: () => import('@/views/CategoryEdit.vue'),
+        props: true
+      },
+      {
+        path: '/categories/list',
+        component: () => import('@/views/CategoryList.vue')
       }
     ]
   }
