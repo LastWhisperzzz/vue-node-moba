@@ -4,6 +4,7 @@ import router from './router'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 import './plugins/element.js'
+import './style/style.css'
 
 axios.defaults.baseURL = 'http://localhost:3000/admin/api'
 Vue.use(VueAxios, axios)
@@ -12,5 +13,5 @@ Vue.config.productionTip = false
 
 new Vue({
   router,
-  render: h => h(App),
+  render: h => h(App)
 }).$mount('#app')

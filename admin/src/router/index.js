@@ -60,6 +60,19 @@ const routes = [
       {
         path: '/articles/list',
         component: () => import('@/views/ArticleList.vue')
+      },
+      {
+        path: '/ads/create',
+        component: () => import('@/views/AdEdit.vue')
+      },
+      {
+        path: '/ads/edit/:id',
+        component: () => import('@/views/AdEdit.vue'),
+        props: true
+      },
+      {
+        path: '/ads/list',
+        component: () => import('@/views/AdList.vue')
       }
     ]
   }
