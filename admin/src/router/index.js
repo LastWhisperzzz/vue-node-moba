@@ -21,6 +21,19 @@ const routes = [
       {
         path: '/categories/list',
         component: () => import('@/views/CategoryList.vue')
+      },
+      {
+        path: '/items/create',
+        component: () => import('@/views/ItemEdit.vue')
+      },
+      {
+        path: '/items/edit/:id',
+        component: () => import('@/views/ItemEdit.vue'),
+        props: true
+      },
+      {
+        path: '/items/list',
+        component: () => import('@/views/ItemList.vue')
       }
     ]
   }
