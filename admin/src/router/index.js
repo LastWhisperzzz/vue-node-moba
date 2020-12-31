@@ -47,6 +47,19 @@ const routes = [
       {
         path: '/heroes/list',
         component: () => import('@/views/HeroList.vue')
+      },
+      {
+        path: '/articles/create',
+        component: () => import('@/views/ArticleEdit.vue')
+      },
+      {
+        path: '/articles/edit/:id',
+        component: () => import('@/views/ArticleEdit.vue'),
+        props: true
+      },
+      {
+        path: '/articles/list',
+        component: () => import('@/views/ArticleList.vue')
       }
     ]
   }
