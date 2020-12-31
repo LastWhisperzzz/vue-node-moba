@@ -31,7 +31,7 @@ export default {
   data() {
     return {
       model: {
-        parent: '',
+        parent: null,
         name: ''
       },
       parents: []
@@ -52,7 +52,7 @@ export default {
 
       console.log(res)
       // res判断
-      this.$router.push('rest/categories/list')
+      this.$router.push('/categories/list')
       this.$message({ type: 'success', message: '保存成功' })
     },
     async fetch() {

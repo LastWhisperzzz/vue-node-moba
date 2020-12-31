@@ -21,7 +21,12 @@ import {
   Option,
   Message,
   MessageBox,
-  Upload
+  Upload,
+  Rate,
+  Tabs,
+  TabPane,
+  Row,
+  Col
 } from 'element-ui'
 
 Vue.use(Button)
@@ -44,6 +49,11 @@ Vue.use(FormItem)
 Vue.use(Select)
 Vue.use(Option)
 Vue.use(Upload)
+Vue.use(Rate)
+Vue.use(Tabs)
+Vue.use(TabPane)
+Vue.use(Row)
+Vue.use(Col)
 
 Vue.prototype.$message = Message
 Vue.prototype.$confirm = MessageBox.confirm

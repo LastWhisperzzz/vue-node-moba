@@ -13,8 +13,8 @@
           </el-menu-item-group>
           <el-menu-item-group>
             <template slot="title">英雄</template>
-            <el-menu-item index="1-3">新建英雄</el-menu-item>
-            <el-menu-item index="1-4">英雄列表</el-menu-item>
+            <el-menu-item index="/heroes/create">新建英雄</el-menu-item>
+            <el-menu-item index="/heroes/list">英雄列表</el-menu-item>
           </el-menu-item-group>
           <el-menu-item-group>
             <template slot="title">文章</template>

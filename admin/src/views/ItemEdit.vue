@@ -25,7 +25,7 @@
 
 <script>
 export default {
-  name: 'CategoryEdit',
+  name: 'ItemEdit',
   props: {
     id: {}
   },
@@ -55,7 +55,7 @@ export default {
 
       console.log(res)
       // res判断
-      this.$router.push('rest/items/list')
+      this.$router.push('/items/list')
       this.$message({ type: 'success', message: '保存成功' })
     },
     async fetch() {
