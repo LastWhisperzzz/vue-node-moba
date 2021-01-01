@@ -5,6 +5,12 @@ Vue.use(VueRouter)
 
 const routes = [
   {
+    path: '/login',
+    name: 'login',
+    component: () => import('@/views/Login.vue'),
+    meta: { isPublic: true }
+  },
+  {
     path: '/',
     name: 'Home',
     component: () => import('@/views/Home.vue'),
@@ -73,21 +79,34 @@ const routes = [
       {
         path: '/ads/list',
         component: () => import('@/views/AdList.vue')
+      },
+      {
+        path: '/admin_users/create',
+        component: () => import('@/views/AdminUserEdit.vue')
+      },
+      {
+        path: '/admin_users/edit/:id',
+        component: () => import('@/views/AdminUserEdit.vue'),
+        props: true
+      },
+      {
+        path: '/admin_users/list',
+        component: () => import('@/views/AdminUserList.vue')
       }
     ]
   }
-  // {
-  //   path: '/about',
-  //   name: 'About',
-  //   // route level code-splitting
-  //   // this generates a separate chunk (about.[hash].js) for this route
-  //   // which is lazy-loaded when the route is visited.
-  //   component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-  // }
 ]
 
 const router = new VueRouter({
   routes
+})
+
+// 客户端路由限制
+router.beforeEach((to, from, next) => {
+  if (!to.meta.isPublic && !sessionStorage.token) {
+    return next('/login')
+  }
+  next()
 })
 
 export default router
