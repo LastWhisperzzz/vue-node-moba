@@ -4,6 +4,12 @@ import router from './router'
 
 Vue.config.productionTip = false
 
+import './assets/css/style.scss'
+
+import VueAwesomeSwiper from 'vue-awesome-swiper'
+import 'swiper/dist/css/swiper.css'
+Vue.use(VueAwesomeSwiper)
+
 new Vue({
   router,
   render: h => h(App)
