@@ -47,6 +47,27 @@
         </div>
       </template>
     </m-list-card>
+
+    <m-list-card icon="card-hero" title="英雄列表" :categories="heroCats">
+      <template #items="{category}">
+        <div class="d-flex flex-wrap" style="margin: 0 -0.5rem;">
+          <router-link
+            tag="div"
+            :to="`/heroes/${hero._id}`"
+            class="p-2 text-center"
+            style="width: 20%;"
+            v-for="(hero, i) in category.heroList"
+            :key="i"
+          >
+            <img :src="hero.avatar" class="w-100" />
+            <div>{{ hero.name }}</div>
+          </router-link>
+        </div>
+      </template>
+    </m-list-card>
+
+    <m-card icon="menu1" title="精彩视频"></m-card>
+    <m-card icon="menu1" title="图文攻略"></m-card>
   </div>
 </template>
 
@@ -72,16 +93,22 @@ export default {
           el: '.swiper-pagination'
         }
       },
-      newsCats: []
+      newsCats: [],
+      heroCats: []
     }
   },
   created() {
     this.fetchNewsCats()
+    this.fetchHeroCats()
   },
   methods: {
     async fetchNewsCats() {
       const res = await this.axios.get('news/list')
       this.newsCats = res.data
+    },
+    async fetchHeroCats() {
+      const res = await this.axios.get('heroes/list')
+      this.heroCats = res.data
     }
   }
 }
