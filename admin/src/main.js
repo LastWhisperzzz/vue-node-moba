@@ -7,6 +7,7 @@ import './plugins/element.js'
 import './style/style.css'
 
 axios.defaults.baseURL = 'http://localhost:3000/admin/api'
+// axios.defaults.baseURL: process.env.VUE_APP_API_URL || '/web/api'
 Vue.use(VueAxios, axios)
 
 // 请求拦截
