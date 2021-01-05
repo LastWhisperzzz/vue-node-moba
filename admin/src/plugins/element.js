@@ -27,7 +27,9 @@ import {
   TabPane,
   Row,
   Col,
-  Card
+  Card,
+  Breadcrumb,
+  BreadcrumbItem
 } from 'element-ui'
 
 Vue.use(Button)
@@ -56,6 +58,8 @@ Vue.use(TabPane)
 Vue.use(Row)
 Vue.use(Col)
 Vue.use(Card)
+Vue.use(Breadcrumb)
+Vue.use(BreadcrumbItem)
 
 Vue.prototype.$message = Message
 Vue.prototype.$confirm = MessageBox.confirm
