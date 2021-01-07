@@ -1,5 +1,13 @@
 <template>
   <div>
+    <!-- 面包屑导航 -->
+    <breadcrumb parentCat="英雄管理" :cat="id ? '编辑英雄' : '添加英雄'" />
+    <!-- 卡片视图区域 -->
+    <el-card>
+      <el-from>
+        <el-tabs type="border-card"> </el-tabs>
+      </el-from>
+    </el-card>
     <h1>{{ id ? '编辑' : '新建' }}英雄</h1>
     <el-form label-width="120px">
       <el-tabs type="border-card" value="basic">
@@ -194,8 +202,10 @@
 </template>
 
 <script>
+import Breadcrumb from '@/components/Breadcrumb'
 export default {
   name: 'HeroEdit',
+  components: { Breadcrumb },
   props: {
     id: {}
   },

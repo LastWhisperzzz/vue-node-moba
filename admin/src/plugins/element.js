@@ -28,8 +28,13 @@ import {
   Row,
   Col,
   Card,
+  Dialog,
+  Cascader,
+  Tag,
   Breadcrumb,
-  BreadcrumbItem
+  BreadcrumbItem,
+  Pagination,
+  Switch
 } from 'element-ui'
 
 Vue.use(Button)
@@ -58,8 +63,13 @@ Vue.use(TabPane)
 Vue.use(Row)
 Vue.use(Col)
 Vue.use(Card)
+Vue.use(Dialog)
+Vue.use(Cascader)
+Vue.use(Tag)
 Vue.use(Breadcrumb)
 Vue.use(BreadcrumbItem)
+Vue.use(Pagination)
+Vue.use(Switch)
 
 Vue.prototype.$message = Message
 Vue.prototype.$confirm = MessageBox.confirm

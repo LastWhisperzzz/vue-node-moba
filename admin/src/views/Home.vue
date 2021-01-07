@@ -43,24 +43,24 @@
           <!-- 分类管理一级菜单 -->
           <el-submenu index="1">
             <template slot="title"
-              ><i class="el-icon-s-fold"></i>分类管理</template
+              ><i class="el-icon-menu"></i>分类管理</template
             >
             <!-- 分类管理二级菜单 -->
             <el-menu-item-group>
               <template slot="title">分类</template>
-              <el-menu-item index="/category">分类列表</el-menu-item>
+              <el-menu-item index="/categories">分类列表</el-menu-item>
             </el-menu-item-group>
           </el-submenu>
 
           <!-- 物品管理一级菜单 -->
           <el-submenu index="2">
             <template slot="title">
-              <i class="el-icon-menu"></i>物品管理
+              <i class="el-icon-takeaway-box"></i>物品管理
             </template>
             <!-- 物品管理二级菜单 -->
             <el-menu-item-group>
               <template slot="title">物品</template>
-              <el-menu-item index="/item">物品列表</el-menu-item>
+              <el-menu-item index="/items">物品列表</el-menu-item>
             </el-menu-item-group>
           </el-submenu>
 
@@ -75,12 +75,12 @@
               <el-menu-item
                 :index="$route.path"
                 v-if="
-                  $route.path === '/hero/create' ||
-                    $route.path.indexOf('/hero/edit') !== -1
+                  $route.path === '/heroes/create' ||
+                    $route.path.indexOf('/heroes/edit') !== -1
                 "
                 >{{ AddOrEdit }}</el-menu-item
               >
-              <el-menu-item index="/hero/list">英雄列表</el-menu-item>
+              <el-menu-item index="/heroes/list">英雄列表</el-menu-item>
             </el-menu-item-group>
           </el-submenu>
 
@@ -95,12 +95,12 @@
               <el-menu-item
                 :index="$route.path"
                 v-if="
-                  $route.path === '/article/create' ||
-                    $route.path.indexOf('/article/edit') !== -1
+                  $route.path === '/articles/create' ||
+                    $route.path.indexOf('/articles/edit') !== -1
                 "
                 >{{ AddOrEdit }}</el-menu-item
               >
-              <el-menu-item index="/article/list">文章列表</el-menu-item>
+              <el-menu-item index="/articles/list">文章列表</el-menu-item>
             </el-menu-item-group>
           </el-submenu>
 
@@ -112,7 +112,7 @@
             <!--广告位二级菜单 -->
             <el-menu-item-group>
               <template slot="title">广告位</template>
-              <el-menu-item index="/ad/list">广告位列表</el-menu-item>
+              <el-menu-item index="/ads">广告位列表</el-menu-item>
             </el-menu-item-group>
           </el-submenu>
 
@@ -124,7 +124,7 @@
             <!--用户管理二级菜单 -->
             <el-menu-item-group>
               <template slot="title">用户</template>
-              <el-menu-item index="/admin_user/list">用户列表</el-menu-item>
+              <el-menu-item index="/admin_users">用户列表</el-menu-item>
             </el-menu-item-group>
           </el-submenu>
         </el-menu>
@@ -156,6 +156,24 @@ export default {
         sessionStorage.clear()
         this.$router.push('/login')
       })
+    }
+  },
+  computed: {
+    AddOrEdit() {
+      if (this.$route.path.indexOf('/heroes') !== -1) {
+        if (this.$route.path === '/heroes/create') {
+          return '添加英雄'
+        } else if (this.$route.path.indexOf('/heroes/edit') !== -1) {
+          return '编辑英雄'
+        }
+      } else {
+        if (this.$route.path === '/articles/create') {
+          return '添加文章'
+        } else if (this.$route.path.indexOf('/articles/edit') !== -1) {
+          return '编辑文章'
+        }
+      }
+      return ''
     }
   }
 }

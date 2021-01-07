@@ -6,7 +6,6 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/login',
-    name: 'login',
     component: () => import('@/views/Login.vue'),
     meta: { isPublic: true }
   },
@@ -15,36 +14,22 @@ const routes = [
     component: () => import('@/views/Home.vue'),
     redirect: '/welcome',
     children: [
+      // welcome
       {
         path: 'welcome',
         component: () => import('@/views/Welcome.vue')
       },
+      // 分类
       {
-        path: '/categories/create',
-        component: () => import('@/views/CategoryEdit.vue')
+        path: 'categories',
+        component: () => import('@/views/Category.vue')
       },
+      // 物品
       {
-        path: '/categories/edit/:id',
-        component: () => import('@/views/CategoryEdit.vue'),
-        props: true
+        path: 'items',
+        component: () => import('@/views/Item.vue')
       },
-      {
-        path: '/categories/list',
-        component: () => import('@/views/CategoryList.vue')
-      },
-      {
-        path: '/items/create',
-        component: () => import('@/views/ItemEdit.vue')
-      },
-      {
-        path: '/items/edit/:id',
-        component: () => import('@/views/ItemEdit.vue'),
-        props: true
-      },
-      {
-        path: '/items/list',
-        component: () => import('@/views/ItemList.vue')
-      },
+      // 英雄
       {
         path: '/heroes/create',
         component: () => import('@/views/HeroEdit.vue')
@@ -58,6 +43,7 @@ const routes = [
         path: '/heroes/list',
         component: () => import('@/views/HeroList.vue')
       },
+      // 文章
       {
         path: '/articles/create',
         component: () => import('@/views/ArticleEdit.vue')
@@ -71,31 +57,15 @@ const routes = [
         path: '/articles/list',
         component: () => import('@/views/ArticleList.vue')
       },
+      // 广告位
       {
-        path: '/ads/create',
-        component: () => import('@/views/AdEdit.vue')
+        path: '/ads',
+        component: () => import('@/views/Ad.vue')
       },
+      //用户
       {
-        path: '/ads/edit/:id',
-        component: () => import('@/views/AdEdit.vue'),
-        props: true
-      },
-      {
-        path: '/ads/list',
-        component: () => import('@/views/AdList.vue')
-      },
-      {
-        path: '/admin_users/create',
-        component: () => import('@/views/AdminUserEdit.vue')
-      },
-      {
-        path: '/admin_users/edit/:id',
-        component: () => import('@/views/AdminUserEdit.vue'),
-        props: true
-      },
-      {
-        path: '/admin_users/list',
-        component: () => import('@/views/AdminUserList.vue')
+        path: '/admin_users',
+        component: () => import('@/views/AdminUser.vue')
       }
     ]
   }
