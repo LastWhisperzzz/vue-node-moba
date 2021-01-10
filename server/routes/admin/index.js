@@ -107,7 +107,18 @@ module.exports = app => {
 
   // 上传资源
   const multer = require('multer')
-  const upload = multer({ dest: __dirname + '/../../uploads' })
+  const upload = multer({
+    dest: __dirname + '/../../uploads'
+    // 替换为阿里云存储
+    //   storage: MAO({
+    //     config: {
+    //         region: 'oss-cn-beijing',
+    //         accessKeyId: 'LTAI4G5Nk12EQWfEajo9gEAD',
+    //         accessKeySecret: 'qpLegIjTQCYeWx81AmxwMflmUTVjTl',
+    //         bucket: 'my-moba'
+    //     }
+    // })
+  })
   app.post(
     '/admin/api/upload',
     authMiddleware(),

@@ -35,8 +35,8 @@
       :visible.sync="dialogVisible"
       @closed="dialogClose"
     >
-      <el-form label-width="80px">
-        <el-form-item label="名称">
+      <el-form label-width="86px">
+        <el-form-item label="广告位名称">
           <el-input v-model="formData.name"></el-input>
         </el-form-item>
 
@@ -53,7 +53,7 @@
               <!-- 序号 -->
               <el-tag class="tag">广告位{{ i + 1 }}</el-tag>
               <!-- 轮播图 -->
-              <el-form-item label="图片:" label-width="70px">
+              <el-form-item label="图片:" label-width="80px">
                 <el-upload
                   class="avatar-uploader"
                   :action="uploadUrl"
@@ -66,7 +66,7 @@
                 </el-upload>
               </el-form-item>
               <!-- 跳转URL -->
-              <el-form-item label="跳转地址:" label-width="70px">
+              <el-form-item label="跳转地址:" label-width="80px">
                 <el-input v-model="item.url"></el-input>
               </el-form-item>
               <el-button type="danger" @click="deleteAdInfo(i)">删除</el-button>
@@ -155,12 +155,43 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .ad-img {
   width: 280px;
   vertical-align: middle;
 }
-.tag {
+.el-tag {
   margin-bottom: 18px;
+}
+.el-card {
+  padding: 10px 0;
+}
+.add-ad-dialog .el-dialog {
+  width: 1000px;
+}
+
+// upload
+.avatar-uploader .el-upload {
+  border: 1px dashed #d9d9d9;
+  border-radius: 6px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+.avatar-uploader .el-upload:hover {
+  border-color: #409eff;
+}
+.avatar-uploader-icon {
+  font-size: 28px;
+  color: #8c939d;
+  min-width: 5rem;
+  height: 5rem;
+  line-height: 5rem;
+  text-align: center;
+}
+.avatar {
+  min-width: 5rem;
+  height: 5rem;
+  display: block;
 }
 </style>

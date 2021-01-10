@@ -1,23 +1,92 @@
 @import './variables';
 
+// 媒体查询-----------------------------------------------------------------------
+html {
+  font-size: 1rem;
+}
+
+@each $var in $screen_width {
+  @media screen and (min-width: #{$var}) {
+    html {
+      font-size: $var/$servings;
+    }
+  }
+}
+
+// 清除浮动
+.clearfix:after {
+  content: ' ';
+  display: block;
+  visibility: hidden;
+  height: 0;
+  clear: both;
+}
+.clearfix {
+  *zoom: 1;
+}
 // reset
 * {
   box-sizing: border-box;
-  outline: none;
-}
-html {
-  font-size: 13px;
 }
 body {
-  margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
-  line-height: 1.2em;
+  font-family: Microsoft YaHei, Arial, Helvetica, sans-serif;
   background: #f1f1f1;
   -webkit-font-smoothing: antialiased;
 }
-a {
-  color: #999;
+body,
+div,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+input,
+textarea,
+p,
+th,
+td {
+  margin: 0;
+  padding: 0;
+  font-size: 100%;
+  vertical-align: baseline;
 }
+
+i {
+  font-style: normal;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: normal;
+}
+ol,
+ul {
+  list-style: none;
+}
+a,
+a:hover,
+a:link,
+a:visited,
+a:active {
+  text-decoration: none;
+  color: inherit;
+}
+button {
+  border: none;
+}
+
+// 定义工具类---------------------------
 
 @each $colorKey, $color in $colors {
   .text-#{$colorKey} {
@@ -56,7 +125,9 @@ a {
 .h-100 {
   height: 100%;
 }
-
+.d-block {
+  display: block;
+}
 // flex
 .d-flex {
   display: flex;
@@ -121,43 +192,124 @@ a {
   border-radius: 0.1538rem;
   font-size: map-get($font-sizes, 'sm') * $base-font-size;
   padding: 0.2rem 0.6rem;
+  &.btn-lg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    i {
+      color: map-get($colors, 'primary');
+      font-weight: bold;
+      font-size: 1.5rem;
+      margin-right: 0.5rem;
+    }
+    background: map-get($colors, 'white-1');
+    border: 1px solid map-get($colors, 'white-2');
+    padding: 0.8rem 1rem;
+    font-size: 1rem;
+  }
 }
 
 // nav
-.nav {
-  display: flex;
-  .nav-item {
-    border-bottom: 3px solid transparent;
-    padding-bottom: 0.2rem;
-    &.active {
-      color: map-get($colors, 'primary');
-      border-bottom-color: map-get($colors, 'primary');
-    }
+// .nav {
+//   display: flex;
+//   .nav-item {
+//     border-bottom: 3px solid transparent;
+//     padding-bottom: 0.2rem;
+//     &.active {
+//       color: map-get($colors, 'primary');
+//       border-bottom-color: map-get($colors, 'primary');
+//     }
+//   }
+//   &.nav-inverse {
+//     .nav-item {
+//       color: map-get($colors, 'white');
+//       &.active {
+//         border-bottom-color: map-get($colors, 'white');
+//       }
+//     }
+//   }
+// }
+
+// sprite精灵图
+.sprite {
+  background: url(../images/sprite.png) no-repeat 0 0;
+  background-size: 15.72rem;
+  display: inline-block;
+  &.sprite-yxzl {
+    width: 0.88rem;
+    // height: 0.76rem;
+    height: 0.92rem;
+    background-position: 92.463% 6.63%;
   }
-  &.nav-inverse {
-    .nav-item {
-      color: map-get($colors, 'white');
-      &.active {
-        border-bottom-color: map-get($colors, 'white');
-      }
-    }
+  &.sprite-xgzd {
+    width: 0.88rem;
+    height: 0.92rem;
+    background-position: 51.952% 40.563%;
+  }
+  &.sprite-ydzy {
+    width: 0.88rem;
+    // height: 0.68rem;
+    height: 0.92rem;
+    background-position: 75.639% 68.937%;
+  }
+  &.sprite-glzx {
+    width: 0.88rem;
+    // height: 0.8rem;
+    height: 0.92rem;
+    background-position: 100% 6.371%;
+  }
+  &.sprite-yz {
+    width: 0.88rem;
+    // height: 0.76rem;
+    height: 0.92rem;
+    background-position: 73.854% 25.691%;
+  }
+  &.sprite-zxdt {
+    width: 0.8rem;
+    height: 0.92rem;
+    background-position: 58.713% 40.563%;
+  }
+  &.sprite-hdzx {
+    width: 0.72rem;
+    // height: 0.88rem;
+    height: 0.92rem;
+    background-position: 76% 55.182%;
+  }
+  &.sprite-wxbd {
+    width: 0.88rem;
+    // height: 0.84rem;
+    height: 0.92rem;
+    background-position: 52.022% 25.698%;
   }
 }
-
-// sprite
-.sprite {
+.sprite2 {
   background: url(../images/index.png) no-repeat 0 0;
-  background-size: 28.8462rem;
+  background-size: 15rem;
   display: inline-block;
-  &.sprite-news {
-    width: 1.7692rem;
-    height: 1.5385rem;
-    background-position: 63.546% 15.517%;
-  }
   &.sprite-arrow {
-    width: 0.7692rem;
-    height: 0.7692rem;
-    background-position: 38.577% 52.076%;
+    width: 0.4rem;
+    height: 0.4rem;
+    background-position: -5.64rem -9.28rem;
+  }
+  &.sprite-menu {
+    width: 0.72rem;
+    height: 0.12rem;
+    background-position: 47.619% 56.305%;
+  }
+  &.sprite-news {
+    width: 0.54rem;
+    height: 0.6rem;
+    background-position: 0.138% 50.452%;
+  }
+  &.sprite-hero {
+    width: 0.54rem;
+    height: 0.52rem;
+    background-position: 46.768% 60.452%;
+  }
+  &.sprite-video {
+    width: 0.54rem;
+    height: 0.48rem;
+    background-position: 0.138% 56.532%;
   }
 }
 // borders

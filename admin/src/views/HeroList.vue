@@ -129,7 +129,7 @@ export default {
       })
       console.log(res.data)
       this.total = res.data.total
-      this.itemList = res.data.data
+      this.heroList = res.data.data
     },
     // 新增
     add() {
@@ -172,3 +172,28 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.hero-avatar {
+  width: 50px;
+  height: 50px;
+}
+.skills {
+  padding: 0 50px;
+  width: 485px;
+  margin: 0 auto;
+}
+.skill {
+  float: left;
+  margin: 0 20px;
+  font-size: 12px;
+}
+.skill h3 {
+  font-weight: normal;
+  margin: 10px 0;
+}
+.skill-icon {
+  width: 50px;
+  height: 50px;
+}
+</style>

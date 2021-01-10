@@ -47,12 +47,7 @@
       width="40%"
       @close="addDialogClosed"
     >
-      <el-form
-        ref="addFrom"
-        :model="addForm"
-        :rules="formRules"
-        label-width="70px"
-      >
+      <el-form :model="addForm" label-width="70px">
         <el-form-item label="上级分类">
           <el-cascader
             :options="cateList"
@@ -132,9 +127,6 @@ export default {
       editForm: {},
       addDialogVisible: false,
       editDialogVisible: false,
-      formRules: {
-        name: [{ required: true, message: '请输入分类名称', trigger: 'blur' }]
-      },
       // 级联选择器配置
       cateProps: {
         expandTrigger: 'hover',
@@ -197,3 +189,10 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+/* 隐藏横向滚动条 */
+.el-scrollbar__wrap {
+  overflow-x: hidden;
+}
+</style>

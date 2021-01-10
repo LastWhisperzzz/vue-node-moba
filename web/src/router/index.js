@@ -6,12 +6,13 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
-    component: () => import('../views/Main.vue'),
+    component: () => import('@/views/Main.vue'),
+    redirect: '/home',
     children: [
       {
-        path: '/',
+        path: '/home',
         name: 'Home',
-        component: () => import('../views/Home.vue')
+        component: () => import('@/views/Home.vue')
       },
       {
         path: '/articles/:id',
@@ -21,9 +22,19 @@ const routes = [
       },
       {
         path: '/heroes/:id',
-        name: 'hero',
+        name: 'Hero',
         component: () => import('../views/Hero.vue'),
         props: true
+      },
+      {
+        path: '/strategy',
+        name: 'Strategy',
+        component: () => import('../views/Strategy.vue')
+      },
+      {
+        path: '/match',
+        name: 'Match',
+        component: () => import('../views/Match.vue')
       }
     ]
   }

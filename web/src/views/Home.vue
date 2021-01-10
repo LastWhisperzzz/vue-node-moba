@@ -1,56 +1,87 @@
 <template>
   <div>
-    <swiper :options="swiperOption">
-      <swiper-slide
-        ><img class="w-100" src="../assets/images/1.jpeg"
-      /></swiper-slide>
-      <swiper-slide
-        ><img class="w-100" src="../assets/images/2.jpeg"
-      /></swiper-slide>
-      <swiper-slide
-        ><img class="w-100" src="../assets/images/3.jpeg"
-      /></swiper-slide>
-      <div
-        class="swiper-pagination text-right px-3 pb-1"
-        slot="pagination"
-      ></div>
+    <!-- 首页轮播图 -->
+    <swiper class="swiper" ref="swiper" v-if="adList" :options="swiperOption">
+      <swiper-slide v-for="item in adList.items" :key="item._id">
+        <a target="_blank" :href="item.url">
+          <img class="w-100" :src="item.image" />
+        </a>
+      </swiper-slide>
+      <div class="swiper-pagination text-right" slot="pagination"></div>
     </swiper>
-    <!-- end of swiper -->
 
-    <div class="nav-icons bg-white mt-3 text-center pt-3 text-dark-1">
-      <div class="d-flex flex-wrap">
-        <div class="nav-item mb-3" v-for="n in 10" :key="n">
-          <i class="sprite sprite-news"></i>
-          <div class="py-2">爆料站</div>
+    <!-- 入口导航 -->
+    <div class="entry-continer bg-white">
+      <div class="entry-nav d-flex flex-wrap" :class="{ close: fold }">
+        <div class="entry-nav-item">
+          <i class="sprite sprite-yxzl"></i>
+          <div>英雄资料</div>
+        </div>
+        <div class="entry-nav-item">
+          <i class="sprite sprite-xgzd"></i>
+          <div>峡谷之巅</div>
+        </div>
+        <div class="entry-nav-item">
+          <i class="sprite sprite-ydzy"></i>
+          <div>云顶之弈</div>
+        </div>
+        <div class="entry-nav-item">
+          <i class="sprite sprite-glzx"></i>
+          <div>攻略中心</div>
+        </div>
+        <div class="entry-nav-item">
+          <i class="sprite sprite-yz"></i>
+          <div>LOL宇宙</div>
+        </div>
+        <div class="entry-nav-item">
+          <i class="sprite sprite-zxdt"></i>
+          <div>秩序殿堂</div>
+        </div>
+        <div class="entry-nav-item">
+          <i class="sprite sprite-hdzx"></i>
+          <div>活动中心</div>
+        </div>
+        <div class="entry-nav-item">
+          <i class="sprite sprite-wxbd"></i>
+          <div>微信绑定</div>
         </div>
       </div>
-      <div class="bg-light py-2 fs-sm">
-        <i class="sprite sprite-arrow mr-1"></i>
-        <span>收起</span>
+      <div class="entry-btn bg-light" @click="fold = !fold">
+        <i class="btn-icon sprite2 sprite-arrow" :class="{ fold: fold }"></i>
+        <span>{{ fold ? '展开' : '收起' }}</span>
       </div>
     </div>
-    <!-- end of nav icons -->
-
-    <m-list-card icon="menu1" title="新闻资讯" :categories="newsCats">
+    <!-- 新闻资讯 -->
+    <m-card title="新闻资讯" :categories="newsList">
+      <i class="sprite2 sprite-news" slot="icon-left"></i>
+      <i class="sprite2 sprite-menu" slot="icon-right"></i>
       <template #items="{category}">
         <router-link
           tag="div"
+          class="d-flex"
           :to="`/articles/${news._id}`"
-          class="py-2 fs-lg d-flex"
           v-for="(news, i) in category.newsList"
           :key="i"
         >
-          <span class="text-info">[{{ news.categoryName }}]</span>
-          <span class="px-2">|</span>
-          <span class="flex-1 text-dark-1 text-ellipsis pr-2">{{
-            news.title
-          }}</span>
-          <span class="text-grey-1 fs-sm">{{ news.createdAt | date }}</span>
+          <span>[{{ news.categoryName }}]</span>
+          <span>|</span>
+          <span class="flex-1 text-dark-1 text-ellipsis">{{ news.title }}</span>
+          <span class="text-grey-1">{{ news.createdAt | date }}</span>
         </router-link>
       </template>
-    </m-list-card>
+    </m-card>
 
-    <m-list-card icon="card-hero" title="英雄列表" :categories="heroCats">
+    <!-- 英雄列表 -->
+    <m-card title="英雄列表">
+      <i class="sprite2 sprite-hero" slot="icon-left"></i>
+      <i class="sprite2 sprite-menu" slot="icon-right"></i>
+    </m-card>
+    <!-- 精彩视频 -->
+    <m-card title="精彩视频">
+      <i class="sprite2 sprite-video" slot="icon-left"></i>
+      <i class="sprite2 sprite-menu" slot="icon-right"></i>
+    </m-card>
+    <!-- <m-list-card icon="card-hero" title="英雄列表" :categories="heroCats">
       <template #items="{category}">
         <div class="d-flex flex-wrap" style="margin: 0 -0.5rem;">
           <router-link
@@ -69,7 +100,7 @@
     </m-list-card>
 
     <m-card icon="menu1" title="精彩视频"></m-card>
-    <m-card icon="menu1" title="图文攻略"></m-card>
+    <m-card icon="menu1" title="图文攻略"></m-card> -->
   </div>
 </template>
 
@@ -85,6 +116,7 @@ export default {
   },
   data() {
     return {
+      // 轮播图配置
       swiperOption: {
         loop: true,
         autoplay: {
@@ -95,22 +127,36 @@ export default {
           el: '.swiper-pagination'
         }
       },
-      newsCats: [],
-      heroCats: []
+      // 轮播图数据
+      adList: null,
+      // 新闻列表数据
+      newsList: [],
+      // 英雄数据
+      heroList: [],
+      // 收起展开
+      fold: true
     }
   },
   created() {
-    this.fetchNewsCats()
-    this.fetchHeroCats()
+    this.getAdList()
+    this.getNewsList()
+    // this.fetchHeroCats()
   },
   methods: {
-    async fetchNewsCats() {
-      const res = await this.axios.get('news/list')
-      this.newsCats = res.data
+    // 获取轮播图数据
+    async getAdList() {
+      const res = await this.axios.get('/ads')
+      if (!res) return
+      console.log(res.data)
+      this.adList = res.data[0]
     },
-    async fetchHeroCats() {
+    async getNewsList() {
+      const res = await this.axios.get('news/list')
+      this.newsList = res.data
+    },
+    async getHeroList() {
       const res = await this.axios.get('heroes/list')
-      this.heroCats = res.data
+      this.heroList = res.data
     }
   }
 }
@@ -118,25 +164,57 @@ export default {
 
 <style lang="scss">
 @import '../assets/css/variables';
+// 轮播图
 .swiper-pagination {
+  padding-right: 0.4rem;
   .swiper-pagination-bullet {
     opacity: 1;
-    border-radius: 0.1538rem;
-    background: map-get($colors, 'white');
+    border-radius: 0.08rem;
+    background: #fff;
     &.swiper-pagination-bullet-active {
       background: map-get($colors, 'info');
     }
   }
 }
-.nav-icons {
-  border-top: 1px solid $border-color;
-  border-bottom: 1px solid $border-color;
-  .nav-item {
-    width: 25%;
-    border-right: 1px solid $border-color;
-    &:nth-child(4n) {
-      border-right: none;
+
+//入口导航栏
+.entry-continer {
+  margin-top: 10px;
+  text-align: center;
+  font-size: 0.48rem;
+  color: #424242;
+  border-top: 1px solid #d4d9de;
+  border-bottom: 1px solid #d4d9de;
+  .entry-nav {
+    padding-top: 0.6rem;
+    height: 5.16rem;
+    transition: height 0.5s ease;
+    overflow: hidden;
+    .entry-nav-item {
+      width: 25%;
+      margin-bottom: 0.6rem;
+      border-right: 1px solid #d4d9de;
+      &:nth-child(4n) {
+        border-right: none;
+      }
     }
   }
+  .entry-btn {
+    height: 1rem;
+    line-height: 1rem;
+    padding: 5px auto;
+    .btn-icon {
+      margin-right: 0.12rem;
+    }
+  }
+  // 导航栏折叠
+  .close {
+    height: 2.6rem;
+  }
+  .fold {
+    transform: rotate(180deg);
+  }
 }
+
+// 新闻资讯
 </style>

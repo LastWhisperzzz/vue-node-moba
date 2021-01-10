@@ -15,10 +15,12 @@
         <!-- 权限 -->
         <el-table-column label="权限等级" prop="level">
           <template slot-scope="scope">
-            <el-tag size="mini" v-if="scope.row.level === 1">超级管理员</el-tag>
+            <!-- <el-tag size="mini" v-if="scope.row.level === 1">超级管理员</el-tag>
             <el-tag size="mini" type="success" v-else-if="scope.row.level === 2"
               >测试权限</el-tag
-            >
+            > -->
+            <span v-if="scope.row.level === 1">超级管理员</span>
+            <span v-else-if="scope.row.level === 2">测试权限</span>
           </template>
         </el-table-column>
         <!-- 状态 -->
@@ -62,7 +64,7 @@
         <el-form-item label="用户名">
           <el-input v-model="formData.username"></el-input>
         </el-form-item>
-        <el-form-item v-if="!this.formData._id" label="权限等级">
+        <el-form-item v-if="!this.formData._id" label="权限">
           <el-select v-model="formData.level" placeholder="请选择">
             <el-option label="超级管理员" value="1"> </el-option>
             <el-option label="测试权限" value="2"> </el-option>

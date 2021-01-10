@@ -18,6 +18,8 @@ Vue.prototype.axios = axios.create({
 // 在app引入
 import './assets/css/style.scss'
 import './assets/iconfont/iconfont.css'
+import './plugins/vant.js'
+import 'vant/lib/index.css' //vant
 
 import Card from './components/Card.vue'
 Vue.component('m-card', Card)

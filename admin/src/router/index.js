@@ -6,19 +6,16 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/login',
+    name: 'login',
     component: () => import('@/views/Login.vue'),
     meta: { isPublic: true }
   },
   {
     path: '/',
+    name: 'home',
     component: () => import('@/views/Home.vue'),
-    redirect: '/welcome',
+    redirect: '/categories',
     children: [
-      // welcome
-      {
-        path: 'welcome',
-        component: () => import('@/views/Welcome.vue')
-      },
       // 分类
       {
         path: 'categories',

@@ -1,11 +1,11 @@
 <template>
   <div>
-    <h3>Welcome to my site!</h3>
+    <h3>攻略中心</h3>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Welcome'
+  name: 'Strategy'
 }
 </script>

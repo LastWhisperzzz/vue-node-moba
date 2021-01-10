@@ -77,7 +77,8 @@ export default {
     // 获取分类列表
     async getCateList() {
       const res = await this.axios.get('rest/categories')
-      this.categories = res.data
+      const data = res.data.find(item => item.name === '新闻资讯')
+      this.cateList = data.children
     },
     // 富文本编辑器图片上传
     async handleImageAdded(file, Editor, cursorLocation, resetUploader) {

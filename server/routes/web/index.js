@@ -1,9 +1,17 @@
 module.exports = app => {
   const router = require('express').Router()
   const mongoose = require('mongoose')
+
   const Category = mongoose.model('Category')
+  const Ad = mongoose.model('Ad')
   const Article = mongoose.model('Article')
   const Hero = mongoose.model('Hero')
+
+  // 轮播图接口
+  router.get('/ads', async (req, res) => {
+    const model = await Ad.find()
+    res.send(model)
+  })
 
   // 导入新闻数据
   router.get('/news/init', async (req, res) => {
@@ -60,7 +68,7 @@ module.exports = app => {
     //   }
     // }).lean()
     const parent = await Category.findOne({
-      name: '新闻分类'
+      name: '新闻资讯'
     })
     const cats = await Category.aggregate([
       { $match: { parent: parent._id } },
@@ -79,6 +87,7 @@ module.exports = app => {
       }
     ])
     const subCats = cats.map(v => v._id)
+    // 在最前面插入热门分类
     cats.unshift({
       name: '热门',
       newsList: await Article.find()
@@ -89,7 +98,7 @@ module.exports = app => {
         .limit(5)
         .lean()
     })
-
+    // 判断是否为热门，如果为热门，则直接取该分类名
     cats.map(cat => {
       cat.newsList.map(news => {
         news.categoryName =

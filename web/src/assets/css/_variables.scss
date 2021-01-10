@@ -1,4 +1,28 @@
-// colors
+//定义基础字体大小
+$base_font: 25;
+
+//定义分成多少等份
+$servings: 15;
+
+//定义媒体查询屏幕尺寸
+$screen_width: (
+  320px,
+  360px,
+  375px,
+  384px,
+  400px,
+  411px,
+  414px,
+  424px,
+  480px,
+  540px,
+  720px,
+  750px,
+  768px,
+  1024px
+);
+
+// 定义颜色
 $colors: (
   'primary': #db9e3f,
   'info': #4b67af,
@@ -17,8 +41,9 @@ $colors: (
   'black': #000
 );
 $border-color: map-get($colors, 'light-1');
-// font-size
-$base-font-size: 1rem;
+
+// 定义字体大小
+$base-font-size: 0.52rem;
 $font-sizes: (
   xxs: 0.6154,
   xs: 0.7692,
@@ -29,9 +54,11 @@ $font-sizes: (
   //13px
     lg: 1.0769,
   //14px
-    xl: 1.2308 //16px
+    xl: 1.2308,
+  //16px
 );
 
+// 定义flex
 $flex-jc: (
   start: flex-start,
   end: flex-end,
@@ -46,7 +73,7 @@ $flex-ai: (
   stretch: stretch
 );
 
-// spacing
+// 定义边距
 $spacing-types: (
   m: margin,
   p: padding
@@ -57,7 +84,7 @@ $spacing-directions: (
   b: bottom,
   l: left
 );
-$spacing-base-size: 1rem;
+$spacing-base-size: 0.52rem;
 $spacing-sizes: (
   0: 0,
   1: 0.25,
