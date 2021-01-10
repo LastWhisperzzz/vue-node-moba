@@ -30,6 +30,7 @@ http.interceptors.response.use(
     return res
   },
   err => {
+    NProgress.done() //隐藏进度条
     if (err.response.data.message) {
       Vue.prototype.$message({
         type: 'error',

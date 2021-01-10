@@ -11,6 +11,9 @@ module.exports = app => {
   const pagination = require('../../middleware/pagination')
   // 登录校验中间件
   const authMiddleware = require('../../middleware/auth')
+  // 权限校验
+  const access = require('../../middleware/access')
+  // 资源匹配中间件
   const resourceMiddleware = require('../../middleware/resource')
 
   // 登录
@@ -36,17 +39,17 @@ module.exports = app => {
   )
 
   // 创建资源
-  router.post('/', async (req, res) => {
+  router.post('/', access(), async (req, res) => {
     const model = await req.Model.create(req.body)
     res.send(model)
   })
   // 更新资源
-  router.put('/:id', async (req, res) => {
+  router.put('/:id', access(), async (req, res) => {
     const model = await req.Model.findByIdAndUpdate(req.params.id, req.body)
     res.send(model)
   })
   // 删除资源
-  router.delete('/:id', async (req, res) => {
+  router.delete('/:id', access(), async (req, res) => {
     await req.Model.findByIdAndDelete(req.params.id, req.body)
     res.send({
       success: true
